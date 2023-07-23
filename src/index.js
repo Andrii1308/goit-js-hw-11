@@ -8,6 +8,7 @@ const refs = getRefs();
 
 let simplelightbox = new SimpleLightbox('.js-gallery a');
 
+
 refs.form.addEventListener('submit', onFormSubmit);
 
 let query = '';
@@ -36,6 +37,14 @@ async function onFormSubmit(evt) {
         'Sorry, there are no images matching your search query. Please try again.'
       );
     }
+      
+    $(window).scroll(function () {
+      if ($(window).scrollTop() + $(window).height() === $(document).height()) {
+        Notify.warning(
+          `We're sorry, but you've reached the end of search results.`
+        );
+      }
+    });
 
     const markup = createMarkup(hits);
 
